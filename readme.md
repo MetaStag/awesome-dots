@@ -13,6 +13,8 @@ Tools I use:
    ▴ **Bar** -> [Polybar](https://polybar.github.io/)
 
    ▴ **Editor** -> [Neovim](https://neovim.io/)
+   
+   ▴ **Application Launcher** -> [Rofi](https://github.com/davatorium/rofi) (Modified from [here](https://github.com/adi1090x/rofi))
 
    ▴ **GTK Theme** -> [Lumiere, Noita](https://github.com/addy-dclxvi/gtk-theme-collections)
 
@@ -23,8 +25,6 @@ Tools I use:
    ▴ **File Manager** -> [SpaceFM](http://ignorantguru.github.io/spacefm/)
    
    ▴ **Music Player** => [Moc](http://moc.daper.net/)
-
-   ▴ **Application Launcher** -> [Rofi](https://github.com/davatorium/rofi) (Modified from [here](https://github.com/adi1090x/rofi))
 
    ▴ **Music Visualizer** -> [Glava](https://github.com/jarcode-foss/glava)
 
