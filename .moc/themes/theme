@@ -1,0 +1,40 @@
+# __  __       _          ___  _          __ _ 
+#|  \/  | ___ | |_  __ _ / __|| |_  __ _ / _` |
+#| |\/| |/ -_)|  _|/ _` |\__ \|  _|/ _` |\__. |
+#|_|  |_|\___| \__|\__/_||___/ \__|\__/_||___/ 
+
+# MOC THEME (~/.moc/theme)
+# -----------------------------------------------
+
+background           = default  default
+frame                = magenta  default    bold
+window_title         = green    default    bold
+directory            = cyan     default    bold
+selected_directory   = black    magenta
+playlist             = blue     default    bold
+selected_playlist    = blue     magenta
+file                 = blue     default    bold
+selected_file        = black    magenta
+marked_file          = blue     default    bold
+marked_selected_file = green    magenta    bold
+info                 = green    default    bold
+status               = green    default    bold
+title                = cyan    default    bold
+state                = blue     default    bold
+current_time         = magenta  default    bold
+time_left            = magenta  default    bold
+total_time           = green    default    bold
+time_total_frames    = blue     default    bold
+sound_parameters     = cyan     default    bold
+legend               = cyan     default    bold
+disabled             = blue     default
+enabled              = blue     default    bold
+empty_mixer_bar      = blue     default    bold
+filled_mixer_bar     = green    default
+empty_time_bar       = blue     default    bold
+filled_time_bar      = blue     magenta
+entry                = green    default    bold
+entry_title          = green    default    bold
+error                = red      default    bold
+message              = cyan     default    bold
+plist_time           = green    default	   bold 

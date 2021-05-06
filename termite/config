@@ -1,0 +1,51 @@
+#   ______                    _ __     
+#  /_  __/__  _________ ___  (_) /____ 
+#   / / / _ \/ ___/ __ `__ \/ / __/ _ \
+#  / / /  __/ /  / / / / / / / /_/  __/
+# /_/  \___/_/  /_/ /_/ /_/_/\__/\___/ 
+
+# TERMITE CONFIG (~/.config/termite/config)
+# ---------------------------
+
+[options]
+font = JetBrains Mono 11
+
+allow_bold = true
+bold_is_bright = true
+
+clickable_url = true
+
+# Options -> block, underline, ibeam
+cursor_shape = ibeam
+# Options -> system, on, off
+cursor_blink = system
+
+scrollback_lines = 1000
+# Options -> off, left, right
+scrollbar = off
+
+[colors]
+background = #37395E
+foreground = #ECBDF6
+
+highlight = #454C61
+
+# Normal Colors
+color0 = #2C282E
+color1 = #E15555
+color2 = #1DFF79
+color3 = #E38B4E
+color4 = #689BFF
+color5 = #D35DFF
+color6 = #4BD4C3
+color7 = #707880
+
+# Bright Colors
+color8 = #3C3741
+color9 = #E44646
+color10 = #00FF9E
+color11 = #F7BE4E
+color12 = #6F9EDD
+color13 = #D000FF
+color14 = #4BFFDC
+color15 = #C5C8C6

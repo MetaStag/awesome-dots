@@ -1,0 +1,120 @@
+#  ______ ____   ______   _______ 
+# |      \    \ /      \ /       \
+# | ▓▓▓▓▓▓\▓▓▓▓\  ▓▓▓▓▓▓\  ▓▓▓▓▓▓▓
+# | ▓▓ | ▓▓ | ▓▓ ▓▓  | ▓▓ ▓▓      
+# | ▓▓ | ▓▓ | ▓▓ ▓▓__/ ▓▓ ▓▓_____ 
+# | ▓▓ | ▓▓ | ▓▓\▓▓    ▓▓\▓▓     \
+#  \▓▓  \▓▓  \▓▓ \▓▓▓▓▓▓  \▓▓▓▓▓▓▓
+
+# MOC KEYMAPS (~/.moc/keymaps)
+# ------------------------------------
+
+# QUIT
+quit_client      = q
+quit             = Q
+
+# MENU
+go               = ENTER
+menu_down        = j
+menu_up          = k
+menu_page_up     = PAGE_UP
+menu_page_down   = PAGE_DOWN
+menu_first_item  = g
+menu_last_item   = G
+cancel           = ESCAPE
+search_menu      = /
+toggle_show_time = T
+toggle_menu      = TAB
+toggle_layout    = F3 
+toggle_hidden_files = .
+next_search      = n
+refresh          = R
+reload           = F5
+
+toggle_show_format     = F
+playlist_full_paths    = P
+
+# AUDIO
+seek_forward        = RIGHT
+seek_backward       = LEFT
+seek_forward_fast   = ]
+seek_backward_fast  = [
+pause               = p SPACE
+stop                = s
+next                = N
+previous            = BACKSPACE
+toggle_shuffle      = S
+toggle_repeat       = r
+go_url              = u
+
+# VOLUME
+volume_up_1         = >
+volume_down_1       = <
+volume_up_5         = UP
+volume_down_5       = DOWN
+
+# PLAYLIST
+add_file               = a
+add_directory          = A
+delete_from_playlist   = d
+clear_playlist         = C
+save_playlist          = F8
+
+# DISABLED
+toggle_read_tags       =
+show_lyrics            =
+theme_menu             =
+help                   =
+toggle_mixer           =
+volume_10              =
+volume_20              =
+volume_30              =
+volume_40              =
+volume_50              =
+volume_60              =
+volume_70              =
+volume_80              =
+volume_90              =
+go_to_a_directory      =
+go_to_music_directory  =
+go_to_fast_dir1        =
+go_to_fast_dir2        =
+go_to_fast_dir3        =
+go_to_fast_dir4        =
+go_to_fast_dir5        =
+go_to_fast_dir6        =
+go_to_fast_dir7        =
+go_to_fast_dir8        =
+go_to_fast_dir9        =
+go_to_fast_dir10       =
+go_to_playing_file     =
+go_up                  =
+plist_add_stream       =
+plist_move_up          =
+plist_move_down        =
+remove_dead_entries    =
+enqueue_file           =
+clear_queue            =
+history_up             =
+history_down           =
+delete_to_start        =
+delete_to_end          =
+hide_message           =
+toggle_softmixer       =
+toggle_make_mono       =
+toggle_equalizer       =
+equalizer_refresh      =
+equalizer_prev         =
+equalizer_next         =
+mark_start             =
+mark_end               =
+exec_command1          =
+exec_command2          =
+exec_command3          =
+exec_command4          =
+exec_command5          =
+exec_command6          =
+exec_command7          =
+exec_command8          =
+exec_command9          =
+exec_command10         =
