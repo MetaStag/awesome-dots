@@ -1,4 +1,4 @@
-# Dotfiles
+<h1 align='center'>Dotfiles</h1>
 
 **ⵃ Thanks for visiting!**
 
@@ -21,6 +21,8 @@ Tools I use:
    ▴ **Matrix in terminal** -> [Unimatrix](https://github.com/will8211/unimatrix) (Command is `unimatrix -lg -s 95 | lolcat`)
 
    ▴ **File Manager** -> [SpaceFM](http://ignorantguru.github.io/spacefm/)
+   
+   ▴ **Music Player** => [Moc](http://moc.daper.net/)
 
    ▴ **Application Launcher** -> [Rofi](https://github.com/davatorium/rofi) (Modified from [here](https://github.com/adi1090x/rofi))
 
@@ -29,5 +31,5 @@ Tools I use:
    ▴ **Display Manager** -> [Sddm](https://github.com/sddm/sddm/)
 
    ▴ **PDF Reader** -> [Zathura](https://pwmt.org/projects/zathura/)
-
----
+   
+   ▴ **Book** -> [The Hobbit / Lord of the Rings](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings)
