@@ -76,6 +76,7 @@ end)
 awful.rules.rules = {
     -- All windows
     { rule = { },
+      except_any = {class = {'Polybar'}}, -- Don't put border colors on polybar
       properties = { border_width = beautiful.border_width,
                      focus = awful.client.focus.filter,
                      raise = true,
@@ -94,12 +95,6 @@ awful.rules.rules = {
             type = {'dialog'}
         },
         properties = {floating = true}
-    },
-    -- Don't put border color on polybar
-    { rule_any = {
-            class = {'Polybar'}
-        },
-        properties = {border_color = nil}
     }
 }
 
