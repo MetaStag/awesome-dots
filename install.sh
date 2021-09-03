@@ -18,6 +18,6 @@ cp -r picom.conf $HOME/.config/
 cp -r sddm $HOME/.config/
 cp -r zathura $HOME/.config/
 cd ../
-rm -rf $HOME/awesome-dots
+rm -rf awesome-dots
 
 echo "Logout or Restart WM :)"
