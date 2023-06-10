@@ -2,24 +2,23 @@
 # --------------------------
 
 # Prompt
-PS1="%F{blue}%B%~%b%f %F{207}%Bⵃ%b%f "
+PS1="%F{blue}%B%~%b%f %F{green}%BΨ%b%f "
 export EDITOR=nvim
 
 # Aliases
 alias vim=nvim
-alias cat=bat # bat is a cat clone with syntax highlighting and git integration
-alias ls='exa --group-directories-first' # exa is an ls clone with colors, icons and better -lh output
-alias ll='exa -lgh --icons --group-directories-first'
-alias la='exa -lgha --icons --group-directories-first'
-alias pacman='sudo pacman --color=auto'
-alias update='sudo pacman -Syu'
-alias packages='sudo pacman -Q | wc -l' # Check number of packages installed
-alias sl='sl | lolcat'
-alias unimatrix='unimatrix -lg -s 95 | lolcat' # Unimatrix with Greek characters and lolcat
+alias apt='sudo apt'
+alias ls='exa --group-directories-first'
+alias ll='exa --icons -lh --no-user --no-time --group-directories-first'
+alias la='exa --icons -lah --no-user --no-time --group-directories-first'
+alias lt='exa --tree'
+alias packages='dpkg --list | wc -l' # Check number of packages installed
+alias du='du -hsc'
+alias space='df -h | awk '\''/n1p5|sda3/ {print $6" - "$5" used"}'\''' # check used space in /root and /home
 
 # History
-HISTSIZE=15
-SAVEHIST=15
+HISTSIZE=100
+SAVEHIST=100
 HISTFILE=~/.config/zsh/history
 
 # Tab completion
@@ -58,9 +57,9 @@ zle-line-init() {
     echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Plugins
-#source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+bunnyfetch
