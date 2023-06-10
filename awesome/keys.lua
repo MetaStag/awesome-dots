@@ -9,10 +9,9 @@ require('awful.hotkeys_popup.keys')
 -- Variables
 local keys = {}
 
-metakey = 'Mod4'
 tags = 5
--- keys.tags = tags     --Uncomment this if not using custom tag names
-terminal = 'alacritty'
+metakey = 'Mod4'
+terminal = 'xfce4-terminal'
 editor = 'nvim'
 editor_launch = terminal..' -e '..editor
 
@@ -26,57 +25,64 @@ keys.globalkeys = gears.table.join(
               {description='Keybindings', group='Awesome'}),
     awful.key({metakey}, 'Tab', function () awful.layout.inc(1) end,
               {description = 'Next layout', group = 'Awesome'}),
-    awful.key({metakey, 'Shift'}, 'Tab', function () awful.layout.inc(-1) end,
-              {description = 'Previous layout', group = 'Awesome'}),
-    awful.key({metakey}, 'Escape', awful.tag.history.restore,
-              {description='Return to last tag', group='Tags'}),
+    awful.key({metakey}, 'w', function() awful.spawn.with_shell('feh --randomize --bg-fill /usr/share/backgrounds') end,
+              {description='Change wallpaper', group='Awesome'}),
 
     -- Window management
-    awful.key({'Mod1',}, 'Tab', function() awful.client.focus.byidx(1) end,
-              {description = 'Switch between windows', group = 'Window Management'}),
+    awful.key({metakey}, 'Escape', awful.tag.history.restore,
+              {description='Return to last tag', group='Tags'}),
     awful.key({metakey}, 'Right', function () awful.tag.incmwfact(0.03) end,
               {description = 'Increase master width factor', group = 'Window Management'}),
     awful.key({metakey}, 'Left', function () awful.tag.incmwfact(-0.03) end,
               {description = 'Decrease master width factor', group = 'Window Management'}),
-
+    awful.key({metakey}, 'h', function() awful.client.focus.byidx(-1) end,
+              {description = 'Switch between windows', group = 'Window Management'}),
+    awful.key({metakey}, 'l', function() awful.client.focus.byidx(1) end,
+              {description = 'Switch between windows', group = 'Window Management'}),
+    awful.key({metakey, 'Shift'}, 'h', function () awful.client.swap.byidx(-1)    end,
+              {description = "Swap window right", group = "Window Management"}),
+    awful.key({metakey, 'Shift'}, 'l', function () awful.client.swap.byidx(1) end,
+              {description = 'Swap window left', group = 'Window Management'}),
 
     -- Applications
     awful.key({metakey}, 'Return', function() awful.util.spawn(terminal) end,
-              {description='Alacritty', group='Applications'}),
-    awful.key({metakey}, 'n', function() awful.util.spawn(editor_launch) end,
-              {description='Neovim', group='Applications'}),
-    awful.key({metakey,'Shift'}, 'Return', function() awful.util.spawn(editor_launch..' Projects/notes.txt') end,
-              {description='Notes', group='Applications'}),
+              {description='Xfce4-terminal', group='Applications'}),
     awful.key({metakey}, 'r', function() awful.util.spawn('rofi -show drun') end,
               {description='Rofi', group='Applications'}),
     awful.key({metakey}, 'b', function() awful.util.spawn('firefox') end,
               {description='Firefox', group='Applications'}),
-    awful.key({metakey}, 'f', function() awful.util.spawn('spacefm') end,
-              {description='Spacefm', group='Applications'}),
+    awful.key({metakey}, 'f', function() awful.util.spawn('pcmanfm') end,
+              {description='Pcmanfm', group='Applications'}),
 
     -- Media Keys
-    awful.key({metakey}, 'F7', function() awful.util.spawn('playerctl play-pause') end,
+    awful.key({}, 'XF86AudioPlay', function() awful.util.spawn('playerctl play-pause') end,
               {description='Play/Pause', group='Media Keys'}),
-    awful.key({metakey}, 'F3', function() awful.util.spawn('amixer set Master 5%+') end,
+    awful.key({}, 'XF86AudioRaiseVolume', function() awful.util.spawn('amixer set Master 5%+') end,
               {description='Increase Volume (by 5%)', group='Media Keys'}),
-    awful.key({metakey}, 'F2', function() awful.util.spawn('amixer set Master 5%-') end,
+    awful.key({}, 'XF86AudioLowerVolume', function() awful.util.spawn('amixer set Master 5%-') end,
               {description='Decrease Volume (by 5%)', group='Media Keys'}),
-    awful.key({metakey}, 'F4', function() awful.util.spawn('amixer set Master toggle') end,
+    awful.key({}, 'XF86AudioMute', function() awful.util.spawn('amixer -D pulse set Master toggle') end,
               {description='Mute/Unmute', group='Media Keys'}),
-    awful.key({metakey}, 'F8', function() awful.util.spawn('playerctl next') end,
+    awful.key({}, 'XF86AudioNext', function() awful.util.spawn('playerctl next') end,
               {description='Next track', group='Media Keys'}),
-    awful.key({metakey}, 'F6', function() awful.util.spawn('playerctl previous') end,
+    awful.key({}, 'XF86AudioPrev', function() awful.util.spawn('playerctl previous') end,
               {description='Previous Track', group='Media Keys'}),
 
     -- Screenshots
-    awful.key({metakey}, 'Print', function() awful.util.spawn('flameshot full -p '..os.getenv('HOME')..'/Pictures') end,
+    awful.key({metakey}, 'Print', function() awful.util.spawn('flameshot screen') end,
               {description='Fullscreen capture', group='Screenshots'}),
-    awful.key({metakey, 'Shift'}, 'Print', function() awful.util.spawn('flameshot gui -p '..os.getenv('HOME')..'/Pictures') end,
-              {description='Use GUI', group='Screenshots'})
+    awful.key({}, 'Print', function() awful.util.spawn('flameshot gui') end,
+              {description='Region Capture', group='Screenshots'}),
+
+    -- Brightness
+    awful.key({}, 'XF86MonBrightnessUp', function() awful.util.spawn('xbacklight -inc 10') end,
+              {description='Increase Brightness', group='Brightness'}),
+    awful.key({}, 'XF86MonBrightnessDown', function() awful.util.spawn('xbacklight -dec 10') end,
+              {description='Decrease Brightness', group='Brightness'})
 )
 
 keys.clientkeys = gears.table.join(
-    awful.key({metakey}, 'w', function(c) c:kill() end,
+    awful.key({metakey}, 'q', function(c) c:kill() end,
               {description = 'Close', group = 'Window Management'}),
     awful.key({metakey}, 'space', function(c) c.fullscreen = not c.fullscreen; c:raise() end,
               {description = 'Toggle Fullscreen', group = 'Window Management'}),

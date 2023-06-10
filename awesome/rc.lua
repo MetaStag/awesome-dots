@@ -7,45 +7,33 @@
 -- AWESOME CONFIG (~/.config/awesome/rc.lua)
 -------------------------------------------------------
 
--- Hide tmux keybinds from the hotkeys popup
+-- Hide vim/tmux keybinds from the hotkeys popup
 package.loaded['awful.hotkeys_popup.keys.tmux'] = {}
+package.loaded['awful.hotkeys_popup.keys.vim'] = {}
 
 -- Importing libraries
 local gears = require('gears')
 local awful = require('awful')
+local wibox = require("wibox")
+local naughty = require('naughty')
 require('awful.autofocus')
 local beautiful = require('beautiful')
 local keys = require('keys')
+local dpi = require("beautiful.xresources").apply_dpi
+
+-- custom widgets
+local todo = require("widgets.todo-widget.todo")
+local battery = require("widgets.battery-widget")
+local work = require("widgets.work")
 
 -- Loading the theme
-theme_path = string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), 'Morning')
+theme_path = string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), 'dusk')
 beautiful.init(theme_path)
-
--- Set the wallpaper
-local function set_wallpaper(s)
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        if type(wallpaper) == 'function' then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal('property::geometry', set_wallpaper)
-
-for s = 1, screen.count() do
-	gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-end
 
 -- Layouts
 awful.layout.layouts = {
-    awful.layout.suit.fair,
-    awful.layout.suit.floating,
-    awful.layout.suit.max,
-    awful.layout.suit.magnifier,
     awful.layout.suit.tile,
+    awful.layout.suit.magnifier,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
@@ -59,24 +47,9 @@ awful.layout.layouts = {
     --awful.layout.suit.corner.se,
 }
 
-awful.screen.connect_for_each_screen(function(s)
-    local tagTable = {'code', 'www', 'music', 'read', 'misc'}
-
-    --[[ Uncomment this if not using custom tag names (no. of tags will be derived from `tags` variable set in keys.lua)
-    -- Also uncomment `keys.tags = tags` line in the Variables section in keys.lua!
-    local tagTable = {}
-    for i = 1, keys.tags do
-        table.insert(tagTable, tostring(i))
-    end
-    ]]
-
-    awful.tag(tagTable, s, awful.layout.layouts[1])
-end)
-
 awful.rules.rules = {
     -- All windows
     { rule = { },
-      except_any = {class = {'Polybar'}}, -- Don't put border colors on polybar
       properties = { border_width = beautiful.border_width,
                      focus = awful.client.focus.filter,
                      raise = true,
@@ -98,6 +71,9 @@ awful.rules.rules = {
     }
 }
 
+-- Limit notification size
+naughty.config.defaults['icon_size'] = 100
+
 -- Enable sloppy focus
 client.connect_signal('mouse::enter', function(c)
     c:emit_signal('request::activate', 'mouse_enter', {raise = false})
@@ -107,11 +83,119 @@ end)
 client.connect_signal('focus', function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal('unfocus', function(c) c.border_color = beautiful.border_normal end)
 
+awful.screen.connect_for_each_screen(function(s)
+    -- wibar
+    wibar = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = beautiful.bg_normal, fg = beautiful.fg_normal})
+
+    local tagTable = {}
+    for i = 1, 5 do
+        table.insert(tagTable, tostring(i))
+    end
+
+    awful.tag(tagTable, s, awful.layout.layouts[1])
+
+    -- Create a wibox for each screen and add it
+    taglist_buttons = gears.table.join(
+                        awful.button({ }, 1, function(t) t:view_only() end),
+                        awful.button({ modkey }, 1, function(t)
+                                                  if client.focus then
+                                                      client.focus:move_to_tag(t)
+                                                  end
+                                              end),
+                        awful.button({ }, 3, awful.tag.viewtoggle),
+                        awful.button({ modkey }, 3, function(t)
+                                                  if client.focus then
+                                                      client.focus:toggle_tag(t)
+                                                  end
+                                              end),
+                        awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+                        awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+                    )
+
+    -- taglist
+    mytaglist = awful.widget.taglist {
+      screen = s,
+      filter = awful.widget.taglist.filter.all,
+      style = {
+              shape = gears.shape.rectangle
+          },
+          layout = {
+              spacing = 8,
+              layout = wibox.layout.fixed.horizontal
+          },
+      buttons = taglist_buttons
+    }
+
+    -- awesome icon
+    local icon = wibox.widget.imagebox(beautiful.awesome_icon, true)
+
+    local separator = wibox.widget.textbox(' ')
+
+    -- random text widget
+    local titles = {"δ", "Δ", "λ", "Σ", "φ", "Ψ", "Ω","ω" }
+    local flag = 1
+    local textbox = wibox.widget.textbox(titles[flag])
+    textbox:connect_signal('button::press', function(textbox)
+      flag = (flag%8)+1 -- toggle flag
+      textbox.markup = titles[flag]
+    end)
+
+    -- time & calendar widgets
+    local time = wibox.widget.textclock("%I:%M - %d %b - %a")
+    local cal = awful.widget.calendar_popup.month({
+      style_weekday = {border_color="#0000000"},
+      style_header = {border_color="#0000000"},
+      style_normal={border_color="#0000000"},
+      style_focus={border_color="#0000000"}
+    })
+    cal:attach(time, 'tr')
+
+    -- attach widgets to wibar
+    wibar: setup {
+      layout = wibox.layout.align.horizontal,
+      expand = "none",
+      { -- Left widgets
+        layout = wibox.layout.fixed.horizontal,
+        separator,
+        icon,
+        separator,
+        mytaglist,
+      },
+      textbox, -- Middle widget
+      { -- Right widgets
+        layout = wibox.layout.fixed.horizontal,
+        work,
+        todo(),
+        separator,
+        battery {
+          ac_prefix = " ",
+          battery_prefix = " ",
+          percent_colors = {
+            { 20, "red"},
+            { 21, beautiful.fg_normal},
+          },
+        },
+        separator,
+        time,
+        separator,
+      },
+    }
+end)
+
+-- Set wallpaper (slideshow)
+-- gears.timer {
+--   timeout = 600,
+--   call_now = true,
+--   autostart = true,
+--   callback = function()
+--     awful.spawn.with_shell('feh --randomize --bg-fill /usr/share/backgrounds')
+--   end
+-- }
+
+awful.spawn.with_shell('feh --bg-scale /usr/share/backgrounds/ds.png')
+
 -- Autostart
-awful.spawn.with_shell('~/.config/polybar/launch.sh')
-awful.spawn.with_shell('picom')
-awful.spawn.with_shell('dunst')
---awful.spawn.with_shell('feh --bg-scale ~/.config/awesome/themes/Morning/wallpaper.jpg')
+awful.spawn.with_shell('picom --experimental-backends')
 
 -- Garbage Collection
 collectgarbage('setpause', 110)
