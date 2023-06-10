@@ -1,0 +1,60 @@
+#  _____         __  __                    
+# /__  /  ______/ /_/ /_  __  _____________
+#   / /  / __  / __/ __ \/ / / / ___/ __  /
+#  / /__/ /_/ / /_/ / / / /_/ / /  / /_/ / 
+# /____/\__,_/\__/_/ /_/\__,_/_/   \__,_/  
+#                                                          
+# ZATHURA CONFIG (~/.config/zathura/zathurarc)
+# --------------------------------------------------------------------------
+
+# GENERAL SETTINGS
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+map D toggle_page_mode # p to change page mode
+map R reload # R to reload document
+map r rotate # r to rotate document
+map c recolor # C to change theme
+set recolor true # Set custom colorscheme by default
+
+# ------------------------------------------------
+# COLORS
+
+# Tab completion colors
+set completion-group-bg         '#1B1D27'
+set completion-group-fg         '#ECEFF4'
+set completion-bg               '#1B1D27'
+set completion-fg               '#ECEFF4'
+set completion-highlight-bg     '#4C566A'
+set completion-highlight-fg     '#ECEFF4'
+
+# Notification colors
+set notification-error-bg       '#434C5E'
+set notification-error-fg       '#ECBDF6'
+set notification-warning-bg     '#434C5E'
+set notification-warning-fg     '#ECBDF6'
+set notification-bg             '#434C5E'
+set notification-fg             '#ECBDF6'
+
+# Index colors
+set index-bg                    '#1B1D27'
+set index-fg                    '#E5E9F0'
+set index-active-bg             '#2E3440'
+set index-active-fg             '#E5E9F0'
+
+# Input Bar colors
+set inputbar-bg                 '#3B4252'
+set inputbar-fg                 '#E5E9F0'
+
+# Status Bar colors
+set statusbar-bg                '#3B4252'
+set statusbar-fg                '#E5E9F0'
+
+# Search-highlight colors
+set highlight-color             '#1B1D27'
+set highlight-active-color      '#2E3440'
+
+# General colors
+set default-bg                  '#1B1D27'
+set recolor-lightcolor          '#2E3440'
+set recolor-darkcolor           '#D8DEE9'

@@ -1,0 +1,7 @@
+# MOC CONFIG (~/.moc/config)                                
+# -----------------------------------------------------
+
+MusicDir = ~/Music/
+StartInMusicDir = yes
+Theme = theme
+Keymap = keymaps
