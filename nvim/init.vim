@@ -45,6 +45,7 @@ let g:vimsence_editing_state = 'Directory: {}'
 set number relativenumber " Line numbers
 set nobackup              " No backup file
 set noswapfile            " No swap file
+set clipboard+=unnamedplus " sync vim clipboard to system
 
 set expandtab             " Use spaces instead of tabs.
 set smarttab              " Be smart using tabs ;)
